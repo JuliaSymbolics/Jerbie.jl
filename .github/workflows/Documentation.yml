@@ -11,6 +11,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # The SciML reusable documentation workflow requests these permissions for
+    # its build job. Declare them on this job as well so gh-pages deploy can
+    # start even when the repo's default GITHUB_TOKEN is read-only.
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+      statuses: write
     steps:
       - uses: actions/checkout@v7
       - uses: julia-actions/setup-julia@latest
